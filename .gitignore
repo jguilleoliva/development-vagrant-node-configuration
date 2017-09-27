@@ -1,0 +1,46 @@
+#---- RESOURCE-FILES ----#
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.log
+*.json
+
+#---- DEV-SPECIFIC ----#
+.idea
+.phpintel
+.vagrant
+node_modules
+bower_components
+data
+
+#---- APPLE-SPECIFIC ----#
+#--- SPECIAL-FIX-FOR-ICON › [Icon must end with two \r] ---#
+Icon
+
+#--- OS-GENERATED-FILES ---#
+._*
+*~
+*.DS_Store
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+.DocumentRevisions-V100
+.fseventsd
+.TemporaryItems
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+.apdisk
+.directory
+Network Trash Folder
+Temporary Items
+ehthumbs.db
+Thumbs.db
+framework-tasks.todo.txt

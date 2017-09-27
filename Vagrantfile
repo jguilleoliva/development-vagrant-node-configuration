@@ -7,7 +7,6 @@ Vagrant.configure("2") do |config|
 	config.vm.network "forwarded_port", guest: 80, host: 3000
 	config.vm.synced_folder "data/html", 	      "/var/www/html",	:mount_options => ["dmode=777", "fmode=777"]
 	config.vm.synced_folder "data/mysql",	      "/var/lib/mysql",	:mount_options => ["dmode=777", "fmode=777"]
-	config.vm.synced_folder "data/log",		      "/var/log",		:mount_options => ["dmode=777", "fmode=777"]
 	#---- !NETWORK CONFIGURATION
 	#---- CONFIGURE PROVIDER
 	config.vm.provider "virtualbox" do |virtualbox|
