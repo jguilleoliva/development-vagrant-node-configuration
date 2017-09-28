@@ -2,7 +2,7 @@
 cd /tmp
 #--- SETUP
 echo "##--- UPDATE SYSTEM ---#"
-apt-get update
+apt-get -qq update
 apt-get -y upgrade
 echo "##--- END:UPDATE SYSTEM ---#"
 #--- !SETUP
@@ -31,9 +31,12 @@ sudo apt-get -y install mysql-server
 echo "##--- END:INSTALL-MYSQL ---#"
 #--- !MYSQL
 #--- PHP
+echo "##--- INSTALL-PHP ---#"
 sudo apt-get install -y php libapache2-mod-php php-common php-curl php-gd php-imagick php-imap php-intl php-json php-mcrypt php-oauth php-mysql php-gettext
 sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_WARNING \& ~E_DEPRECATED/" /etc/php/7.0/apache2/php.ini
 sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.0/apache2/php.ini
 sudo sed -i "s|;date.timezone =|date.timezone = America\/Guatemala|" /etc/php/7.0/apache2/php.ini
 sudo systemctl restart apache2
+echo "##--- END:wINSTALL-PHP ---#"
 #--- !PHP
+echo "##--- ALL-DONE ---##"
