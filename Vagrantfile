@@ -22,4 +22,8 @@ Vagrant.configure("2") do |config|
 	#---- PROVISION
 	config.vm.provision "shell", path: "scripts/vagrant-script.sh"
 	#---- !PROVISION
+	#---- RUN INITIALIZATION SCRIPT
+	config.vm.provision "shell", inline: "sudo service mysql restart", run: "always"
+	#---- !RUN INITIALIZATION SCRIPT
+
 end
