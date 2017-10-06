@@ -37,6 +37,6 @@ sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL \& ~E_NOTICE \& ~E_S
 sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.0/apache2/php.ini
 sudo sed -i "s|;date.timezone =|date.timezone = America\/Guatemala|" /etc/php/7.0/apache2/php.ini
 sudo systemctl restart apache2
-echo "##--- END:wINSTALL-PHP ---#"
+echo "##--- END:INSTALL-PHP ---#"
 #--- !PHP
 echo "##--- ALL-DONE ---##"
