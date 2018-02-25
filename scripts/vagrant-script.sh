@@ -8,7 +8,7 @@ echo "##--- END:UPDATE SYSTEM ---#"
 #--- !SETUP
 #--- ESSENTIALS
 echo "##--- INSTALL-ESSENTIALS ---#"
-sudo apt-get -y install git vim curl build-essential
+sudo apt-get -y install wget git vim curl build-essential software-properties-common
 echo "##--- END:INSTALL-ESSENTIALS ---#"
 #--- !ESSENTIALS
 #--- APACHE2
@@ -32,10 +32,11 @@ echo "##--- END:INSTALL-MYSQL ---#"
 #--- !MYSQL
 #--- PHP
 echo "##--- INSTALL-PHP ---#"
-sudo apt-get install -y php libapache2-mod-php php-common php-curl php-gd php-imagick php-imap php-intl php-json php-mcrypt php-oauth php-mysql php-gettext
+sudo apt-get install -y php libapache2-mod-php php-common php-mcrypt php-curl php-gd php-imagick php-imap php-intl php-json php-oauth php-mysql php-gettext php-soap php-cli
 sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_WARNING \& ~E_DEPRECATED/" /etc/php/7.0/apache2/php.ini
 sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.0/apache2/php.ini
 sudo sed -i "s|;date.timezone =|date.timezone = America\/Guatemala|" /etc/php/7.0/apache2/php.ini
+sudo sed -i "s|DirectoryIndex .*|DirectoryIndex index.html index.php|" /etc/apache2/mods-enabled/dir.conf
 sudo systemctl restart apache2
 echo "##--- END:INSTALL-PHP ---#"
 #--- !PHP
