@@ -7,6 +7,6 @@ mkdir ../data/mysql;
 echo "#--- INITIALIZING-GIT-REPO ---#"
 cd ../data/html;
 git init;
-git remote add origin git@bitbucket.org:astegconsultores/framework-nine-web.git;
+git remote add origin git@bitbucket.org:astegconsultores/baseline-current-framework.git;
 git pull origin master;
 echo "#--- PROCESS-COMPLETED ---#"
