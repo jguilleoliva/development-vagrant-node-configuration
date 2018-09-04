@@ -3,7 +3,6 @@
 echo "#--- PREPARING-DATA-FOLDERS ---#"
 mkdir ../data;
 mkdir ../data/html;
-mkdir ../data/mysql;
 echo "#--- INITIALIZING-GIT-REPO ---#"
 cd ../data/html;
 git init;

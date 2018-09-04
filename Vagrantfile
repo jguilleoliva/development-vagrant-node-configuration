@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 Vagrant.configure("2") do |config|
-	config.vm.box	= "ubuntu/xenial64"
+	config.vm.box = "ubuntu/bionic64"
 	#---- SSH-SETTINGS
 	config.ssh.insert_key		= false
 	config.ssh.private_key_path = ["~/.ssh/id_rsa", "~/.vagrant.d/insecure_private_key"]
@@ -10,14 +10,19 @@ Vagrant.configure("2") do |config|
 	#---- NETWORK CONFIGURATION
 	#config.vm.network		"public_network",	ip: "192.168.1.180",	netmask: "255.255.0.0"
 	config.vm.network 		"forwarded_port",	guest: 80, host: 3000
-	config.vm.synced_folder "data/html",	      "/var/www/html",	:mount_options => ["dmode=777", "fmode=777"]
-	config.vm.synced_folder "data/mysql",	      "/var/lib/mysql",	:mount_options => ["dmode=777", "fmode=777"]
+	config.vm.synced_folder "data/html",			"/var/www/html", :mount_options => ["dmode=777", "fmode=777"]
 	#---- !NETWORK CONFIGURATION
 	#---- CONFIGURE PROVIDER
 	config.vm.provider "virtualbox" do |virtualbox|
-		virtualbox.memory 	= 512
-		virtualbox.cpus		= 1
+		virtualbox.memory 	= 1024
+		virtualbox.cpus		= 1		
 	end
+	#---- VAGRANT TRIGGERS
+	config.trigger.before [:halt, :suspend, :reload] do |trigger|
+		trigger.warn 		= "Backing up database..."
+		trigger.run_remote 	= {inline: "mysqldump -uroot -hlocalhost -p0000 --add-drop-table --no-create-db FRAMEWORK_DATABASE > /var/www/html/resourceCONFIGURATION/FRAMEWORK_DATABASE.automatic.sql"}
+	end
+	#---- !VAGRANT TRIGGERS
 	#---- !CONFIGURE PROVIDER
 	#---- PROVISION
 	config.vm.provision "shell",	path: "scripts/vagrant-script.sh"
@@ -26,3 +31,6 @@ Vagrant.configure("2") do |config|
 	config.vm.provision "shell",	inline: "sudo service mysql restart",	run: "always"
 	#---- !RUN INITIALIZATION SCRIPT
 end
+#--- INSTALATION NOTES
+# Please install the following plugins:
+# vagrant plugin install vagrant-triggers
