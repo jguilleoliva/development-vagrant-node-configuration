@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
 	#---- VAGRANT TRIGGERS
 	config.trigger.before [:halt, :suspend, :reload] do |trigger|
 		trigger.warn 		= "Backing up database..."
-		trigger.run_remote 	= {inline: "mysqldump -uroot -hlocalhost -p0000 --add-drop-table --no-create-db FRAMEWORK_DATABASE > /var/www/html/resourceCONFIGURATION/FRAMEWORK_DATABASE.automatic.sql"}
+		trigger.run_remote 	= {inline: "DATE=$(date +'%Y%m%d%H%M'); mysqldump -uroot -hlocalhost -p0000 --add-drop-table --no-create-db FRAMEWORK_DATABASE > /var/www/html/resourceCONFIGURATION/FRAMEWORK_DATABASE.$DATE.automatic.sql"}
 	end
 	#---- !VAGRANT TRIGGERS
 	#---- !CONFIGURE PROVIDER
