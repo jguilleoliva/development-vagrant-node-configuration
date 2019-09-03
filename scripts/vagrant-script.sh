@@ -1,6 +1,9 @@
 #!/bin/bash
 cd /tmp
 #--- SETUP
+echo "##--- CONFIGURE TERMINAL ---#"
+sudo sed -i '/la/c\alias la="ls -lAhXG --color=always"' ~/.bashrc
+echo "##--- END:CONFIGURE TERMINAL ---#"
 echo "##--- UPDATE SYSTEM ---#"
 apt-get -qq update
 apt-get -y upgrade
