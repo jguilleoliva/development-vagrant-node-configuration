@@ -31,6 +31,7 @@ Vagrant.configure("2") do |config|
 	config.vm.provision "shell",	inline: "sudo service mysql restart",	run: "always"
 	#---- !RUN INITIALIZATION SCRIPT
 end
-#--- INSTALATION NOTES
+#--- INSTALLATION NOTES
 # Please install the following plugins:
 # vagrant plugin install vagrant-triggers
+#--- END::INSTALLATION NOTES
