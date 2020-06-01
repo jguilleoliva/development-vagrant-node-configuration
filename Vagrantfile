@@ -1,15 +1,15 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 Vagrant.configure("2") do |config|
-	config.vm.box = "ubuntu/bionic64"
+	config.vm.box = "ubuntu/focal64"
 	#---- SSH-SETTINGS
 	config.ssh.insert_key		= false
 	config.ssh.private_key_path = ["~/.ssh/id_rsa", "~/.vagrant.d/insecure_private_key"]
 	config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
 	#---- SSH-SETTINGS
 	#---- NETWORK CONFIGURATION
-	config.vm.network		"public_network",	ip: "192.168.0.56",	netmask: "255.255.0.0"
-	config.vm.network 		"forwarded_port",	guest: 80, host: 3000
+	# config.vm.network 		"forwarded_port",	guest: 80, host: 3000
+	config.vm.network		"public_network",	ip: "192.168.0.222",	netmask: "255.255.0.0"
 	config.vm.synced_folder "data/html",			"/var/www/html", :mount_options => ["dmode=777", "fmode=777"]
 	#---- !NETWORK CONFIGURATION
 	#---- CONFIGURE PROVIDER
