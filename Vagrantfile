@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
 	config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
 	#---- SSH-SETTINGS
 	#---- NETWORK CONFIGURATION
-	#config.vm.network		"public_network",	ip: "192.168.1.180",	netmask: "255.255.0.0"
+	config.vm.network		"public_network",	ip: "192.168.0.56",	netmask: "255.255.0.0"
 	config.vm.network 		"forwarded_port",	guest: 80, host: 3000
 	config.vm.synced_folder "data/html",			"/var/www/html", :mount_options => ["dmode=777", "fmode=777"]
 	#---- !NETWORK CONFIGURATION
@@ -21,6 +21,7 @@ Vagrant.configure("2") do |config|
 	config.trigger.before [:halt, :suspend, :reload] do |trigger|
 		trigger.warn 		= "Backing up database..."
 		trigger.run_remote 	= {inline: "DATE=$(date +'%Y%m%d%H%M'); mysqldump -uroot -hlocalhost -p0000 --add-drop-table --no-create-db FRAMEWORK_DATABASE > /var/www/html/resourceCONFIGURATION/FRAMEWORK_DATABASE.$DATE.automatic.sql"}
+		trigger.on_error	= :continue
 	end
 	#---- !VAGRANT TRIGGERS
 	#---- !CONFIGURE PROVIDER
