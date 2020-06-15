@@ -31,7 +31,7 @@ sudo debconf-set-selections <<< "mysql-server mysql-server/root_password passwor
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password 0000"
 sudo apt-get -y install mysql-server 
 	#--- CREATE DEVELOPMENT DATABASE
-	mysql -uroot -p0000 -e "CREATE DATABASE FRAMEWORK_DATABASE"
+	mysql -uroot -p0000 -e "CREATE DATABASE FRAMEWORK_DATABASE CHARACTER SET latin1 COLLATE latin1_swedish_ci;"
 	mysql -uroot -p0000 -e "CREATE USER 'FRAMEWORK_USER' IDENTIFIED BY '0000'"
 	mysql -uroot -p0000 -e "GRANT ALL PRIVILEGES ON FRAMEWORK_DATABASE.* to 'FRAMEWORK_USER'"
 	mysql -uroot -p0000 -e "USE mysql"
