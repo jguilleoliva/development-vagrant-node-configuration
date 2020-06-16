@@ -33,7 +33,7 @@ sudo apt-get -y install mysql-server
 	#--- CREATE DEVELOPMENT DATABASE
 	mysql -uroot -p0000 -e "CREATE DATABASE FRAMEWORK_DATABASE CHARACTER SET latin1 COLLATE latin1_swedish_ci"
 	mysql -uroot -p0000 -e "CREATE USER 'FRAMEWORK_USER' IDENTIFIED BY '0000'"
-	mysql -uroot -p0000 -e "GRANT ALL ON FRAMEWORK_DATABASE.* TO 'FRAMEWORK_USER'@'localhost';"
+	mysql -uroot -p0000 -e "GRANT ALL PRIVILEGES ON *.* TO 'FRAMEWORK_USER'@'%' WITH GRANT OPTION"
 	mysql -uroot -p0000 -e "USE mysql"
 	mysql -uroot -p0000 -e "UPDATE user SET plugin='mysql_native_password' WHERE User='root'"
 	mysql -uroot -p0000 -e "FLUSH PRIVILEGES"
