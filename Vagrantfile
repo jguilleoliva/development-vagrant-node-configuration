@@ -15,7 +15,10 @@ Vagrant.configure("2") do |config|
 	#---- CONFIGURE PROVIDER
 	config.vm.provider "virtualbox" do |virtualbox|
 		virtualbox.memory 	= 1024
-		virtualbox.cpus		= 1		
+		virtualbox.cpus		= 1
+		virtualbox.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
+		virtualbox.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
+
 	end
 	#---- VAGRANT TRIGGERS
 	config.trigger.before [:halt, :suspend, :reload] do |trigger|
