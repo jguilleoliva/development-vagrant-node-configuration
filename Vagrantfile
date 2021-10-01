@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
 	#---- SSH-SETTINGS
 	#---- NETWORK CONFIGURATION
 	# config.vm.network 		"forwarded_port",	guest: 80, host: 3000
-	config.vm.network		"public_network",	ip: "192.168.0.34",	netmask: "255.255.0.0"
+	config.vm.network		"public_network",	ip: "192.168.0.32",	netmask: "255.255.0.0"
 	config.vm.synced_folder "data/html",			"/var/www/html", :mount_options => ["dmode=777", "fmode=777"]
 	#---- !NETWORK CONFIGURATION
 	#---- CONFIGURE PROVIDER
