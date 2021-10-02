@@ -42,7 +42,7 @@ echo "##--- END:INSTALL-MYSQL ---#"
 #--- !MYSQL
 #--- PHP
 echo "##--- INSTALL-PHP7 ---#"
-sudo apt-get install -y php libapache2-mod-php php-common php-curl php-gd php-imagick php-imap php-intl php-json php-oauth php-mysql php-soap php-cli php-mbstring
+sudo apt-get install -y php libapache2-mod-php php-common php-curl php-gd php-imagick php-imap php-intl php-json php-oauth php-mysql php-soap php-cli php-zip php-mbstring
 sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_WARNING \& ~E_DEPRECATED/" /etc/php/7.4/apache2/php.ini
 sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.4/apache2/php.ini
 sudo sed -i "s|;extension=mysqli|extension=mysqli|" /etc/php/7.4/apache2/php.ini
