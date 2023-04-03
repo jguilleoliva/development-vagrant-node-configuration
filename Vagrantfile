@@ -6,10 +6,12 @@ Vagrant.configure("2") do |config|
 	config.ssh.insert_key		= false
 	config.ssh.private_key_path = ["~/.ssh/id_rsa", "~/.vagrant.d/insecure_private_key"]
 	config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
+	config.vm.provision "file", source: "~/.ssh/id_rsa-development", destination: "~/.ssh/id_rsa"
+	config.vm.provision "file", source: "~/.ssh/id_rsa-development.pub", destination: "~/.ssh/id_rsa.pub"
 	#---- SSH-SETTINGS
 	#---- NETWORK CONFIGURATION
 	# config.vm.network 		"forwarded_port",	guest: 80, host: 3000
-	config.vm.network		"public_network",	ip: "192.168.1.36",	netmask: "255.255.0.0"
+	config.vm.network		"public_network",	ip: "192.168.1.40",	netmask: "255.255.0.0"
 	config.vm.synced_folder "data/html",			"/var/www/html",                :mount_options => ["dmode=777", "fmode=777"]
 	config.vm.synced_folder "server-scripts",		"/home/vagrant/server-scripts", :mount_options => ["dmode=777", "fmode=777"]
 	#---- !NETWORK CONFIGURATION
@@ -18,7 +20,7 @@ Vagrant.configure("2") do |config|
 		virtualbox.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
 		virtualbox.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
 		virtualbox.cpus		= 1
-		virtualbox.memory 	= 1024
+		virtualbox.memory 	= 2048
 	end
 	#---- VAGRANT TRIGGERS
 	config.trigger.before [:halt, :suspend, :reload] do |trigger|
